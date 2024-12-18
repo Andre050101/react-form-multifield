@@ -46,3 +46,13 @@ button:hover {
     transition: all 0.3s ease-in-out;
     transform: scale(1.1);
 }
+
+.tags {
+    width: 20px;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+.tagsContainer {
+    margin-top: 1rem;
+}

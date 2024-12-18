@@ -1,7 +1,13 @@
 ul {
     padding-top: 2rem;
     list-style: none;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    gap: 2rem;
 }
+
 
 li div {
     display: flex;
@@ -28,6 +34,12 @@ li div h3 {
 
 img {
     max-width: 200px;
-    height: auto;
+    height: 200px;
     margin-top: 10px;
+}
+
+.content {
+    width: 200px;
+    word-wrap: break-word;
+    white-space: pre-wrap;
 }

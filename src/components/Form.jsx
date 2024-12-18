@@ -8,7 +8,7 @@ const Form = ({ onAddArticle }) => {
     const [image, setImage] = useState(null);
     const [content, setContent] = useState("");
     const [category, setCategory] = useState("");
-    const [tags, setTags] = useState("");
+    const [tags, setTags] = useState([]);
     const [state, setState] = useState("");
 
     const fileInputRef = useRef(null);
@@ -22,6 +22,16 @@ const Form = ({ onAddArticle }) => {
             setImage(URL.createObjectURL(file));
         }
     }
+    const handleTagChange = (e) => {
+        const { value, checked } = e.target;
+        setTags((prevTags) => {
+            if (checked) {
+                return [...prevTags, value];
+            } else {
+                return prevTags.filter((tag) => tag !== value);
+            }
+        });
+    };
 
     const handleFileReset = () => {
         if (fileInputRef.current) {
@@ -50,7 +60,7 @@ const Form = ({ onAddArticle }) => {
         setImage(null);
         setContent("");
         setCategory("");
-        setTags("");
+        setTags([]);
         setState("");
         handleFileReset();
     };
@@ -128,6 +138,47 @@ const Form = ({ onAddArticle }) => {
                     <option value="lifestyle">Lifestyle</option>
                     <option value="finance">Finance</option>
                 </select>
+            </div>
+            <div>
+                <label>Tags:</label>
+                <div className={styles.tagsContainer}>
+                    <label>
+                        <input
+                            className={styles.tags}
+                            type="checkbox"
+                            value="Technology"
+                            onChange={handleTagChange}
+                        />
+                        Technology
+                    </label>
+                    <label>
+                        <input
+                            className={styles.tags}
+                            type="checkbox"
+                            value="Health"
+                            onChange={handleTagChange}
+                        />
+                        Health
+                    </label>
+                    <label>
+                        <input
+                            className={styles.tags}
+                            type="checkbox"
+                            value="Business"
+                            onChange={handleTagChange}
+                        />
+                        Business
+                    </label>
+                    <label>
+                        <input
+                            className={styles.tags}
+                            type="checkbox"
+                            value="Lifestyle"
+                            onChange={handleTagChange}
+                        />
+                        Lifestyle
+                    </label>
+                </div>
             </div>
             <button type="submit">Add Article</button>
         </form>
