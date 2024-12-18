@@ -23,6 +23,7 @@ const ArticleList = ({ articles, onRemoveArticle }) => {
                             />
                         )}
                         <p><strong>Content:</strong> {article.content}</p>
+                        <p><strong>Category:</strong> {article.category}</p>
                     </div>
                     <button className={styles.btn} onClick={() => onRemoveArticle(article.id)}>Delete</button>
                 </li>

@@ -109,6 +109,26 @@ const Form = ({ onAddArticle }) => {
                     onChange={(e) => setContent(e.target.value)}
                 />
             </div>
+            <div>
+                <label>Category:</label>
+                <select
+                    name="category"
+                    value={category}
+                    onChange={(e) => setCategory(e.target.value)}
+                >
+                    <option value="" disabled>Choose a category</option>
+                    <option value="technology">Technology</option>
+                    <option value="health">Health</option>
+                    <option value="cooking">Cooking</option>
+                    <option value="travel">Travel</option>
+                    <option value="sport">Sport</option>
+                    <option value="music">Music</option>
+                    <option value="art">Art</option>
+                    <option value="formation">Formation</option>
+                    <option value="lifestyle">Lifestyle</option>
+                    <option value="finance">Finance</option>
+                </select>
+            </div>
             <button type="submit">Add Article</button>
         </form>
     );
