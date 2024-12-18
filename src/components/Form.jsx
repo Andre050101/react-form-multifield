@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import styles from "./Form.module.css"
 
 const Form = ({ onAddArticle }) => {
@@ -11,6 +11,7 @@ const Form = ({ onAddArticle }) => {
     const [tags, setTags] = useState("");
     const [state, setState] = useState("");
 
+    const fileInputRef = useRef(null);
     const HandleImage = (e) => {
         const file = e.target.files[0];
         if (file) {
@@ -21,6 +22,12 @@ const Form = ({ onAddArticle }) => {
             setImage(URL.createObjectURL(file));
         }
     }
+
+    const handleFileReset = () => {
+        if (fileInputRef.current) {
+            fileInputRef.current.value = "";
+        }
+    };
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!title.trim())
@@ -45,6 +52,7 @@ const Form = ({ onAddArticle }) => {
         setCategory("");
         setTags("");
         setState("");
+        handleFileReset();
     };
 
     return (
@@ -85,8 +93,21 @@ const Form = ({ onAddArticle }) => {
                     type="file"
                     name="Image"
                     accept="image/*"
-                    onChange={HandleImage} />
+                    ref={fileInputRef}
+                    onChange={HandleImage}
+
+                />
                 {image && <img src={image} alt="Preview" style={{ maxWidth: "200px", marginTop: "10px" }} />}
+            </div>
+            <div>
+                <label>Content:</label>
+                <br />
+                <textarea
+                    name="Content"
+                    placeholder="Enter article content"
+                    value={content}
+                    onChange={(e) => setContent(e.target.value)}
+                />
             </div>
             <button type="submit">Add Article</button>
         </form>

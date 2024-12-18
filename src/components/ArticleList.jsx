@@ -22,6 +22,7 @@ const ArticleList = ({ articles, onRemoveArticle }) => {
                                 className={styles.articleImage} // Aggiunto stile
                             />
                         )}
+                        <p><strong>Content:</strong> {article.content}</p>
                     </div>
                     <button className={styles.btn} onClick={() => onRemoveArticle(article.id)}>Delete</button>
                 </li>
