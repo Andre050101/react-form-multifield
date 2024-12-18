@@ -5,7 +5,22 @@ const Form = ({ onAddArticle }) => {
     const [title, setTitle] = useState("");
     const [author, setAuthor] = useState("");
     const [status, setStatus] = useState("");
+    const [image, setImage] = useState(null);
+    const [content, setContent] = useState("");
+    const [category, setCategory] = useState("");
+    const [tags, setTags] = useState("");
+    const [state, setState] = useState("");
 
+    const HandleImage = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            if (!file.type.startsWith("image/")) {
+                alert("Please upload a valid image file!");
+                return;
+            }
+            setImage(URL.createObjectURL(file));
+        }
+    }
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!title.trim())
@@ -14,18 +29,28 @@ const Form = ({ onAddArticle }) => {
             id: Date.now(),
             title,
             author,
-            status
+            status,
+            image,
+            content,
+            category,
+            tags,
+            state
         };
         onAddArticle(newArticle);
         setTitle("");
         setAuthor("");
         setStatus("");
+        setImage(null);
+        setContent("");
+        setCategory("");
+        setTags("");
+        setState("");
     };
 
     return (
         <form onSubmit={handleSubmit}>
             <div>
-                <label className={styles.label}>Title:</label>
+                <label>Title:</label>
                 <input
                     type="text"
                     name="title"
@@ -53,6 +78,15 @@ const Form = ({ onAddArticle }) => {
                     <option value="draft">Draft</option>
                     <option value="published">Published</option>
                 </select>
+            </div>
+            <div>
+                <label>Image:</label>
+                <input
+                    type="file"
+                    name="Image"
+                    accept="image/*"
+                    onChange={HandleImage} />
+                {image && <img src={image} alt="Preview" style={{ maxWidth: "200px", marginTop: "10px" }} />}
             </div>
             <button type="submit">Add Article</button>
         </form>

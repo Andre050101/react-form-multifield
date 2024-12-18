@@ -14,6 +14,14 @@ const ArticleList = ({ articles, onRemoveArticle }) => {
                         <h3>{article.title}</h3>
                         <p><strong>Author:</strong> {article.author}</p>
                         <p><strong>Status:</strong> {article.status}</p>
+                        <p><strong>Image:</strong></p>
+                        {article.image && (
+                            <img
+                                src={article.image}
+                                alt={article.title}
+                                className={styles.articleImage} // Aggiunto stile
+                            />
+                        )}
                     </div>
                     <button className={styles.btn} onClick={() => onRemoveArticle(article.id)}>Delete</button>
                 </li>
