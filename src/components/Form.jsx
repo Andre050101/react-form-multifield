@@ -39,9 +39,16 @@ const Form = ({ onAddArticle }) => {
         }
     };
     const handleSubmit = (e) => {
-        e.preventDefault();
-        if (!title.trim())
-            return alert("Title is required");
+        e.preventDefault(); // Prevent the default form submission
+
+        // Check if the title is provided
+        if (!title.trim()) {
+            e.preventDefault();
+            if (!title.trim())
+                return alert("Title is required");
+        }
+
+        // Create a new article object with the form data
         const newArticle = {
             id: Date.now(),
             title,
@@ -53,7 +60,11 @@ const Form = ({ onAddArticle }) => {
             tags,
             state
         };
+
+        // Add the new article using the provided callback
         onAddArticle(newArticle);
+
+        // Reset form fields to their initial states
         setTitle("");
         setAuthor("");
         setStatus("");
@@ -62,8 +73,11 @@ const Form = ({ onAddArticle }) => {
         setCategory("");
         setTags([]);
         setState("");
+
+        // Reset the file input
         handleFileReset();
     };
+    /******  455d775c-d99e-4d93-b7d9-70028bf3c0e7  *******/
 
     return (
         <form onSubmit={handleSubmit}>
